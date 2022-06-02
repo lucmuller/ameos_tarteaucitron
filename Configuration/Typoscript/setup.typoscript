@@ -88,6 +88,14 @@ page {
                     wrap = "readmoreLink": "|", /* Change the default readmore link */
                     if.isTrue = {$ameos.tarteaucitron.readmoreLinkPageId}
                 }
+
+                60 = TEXT
+                60 {
+                    value (
+                        "reloadOnAccept": {$ameos.tarteaucitron.reloadOnAccept}, /* reloadOnAccept */
+                        "doNotLoadExternalScriptFromServices": {$ameos.tarteaucitron.doNotLoadExternalScriptFromServices}, /* doNotLoadExternalScriptFromServices Tarte Au Citron will not load external scripts thus will allow you to handle them with an external tag manager such as Google Tag Manager */
+                    )
+                }
             }
 
             20 = TEXT

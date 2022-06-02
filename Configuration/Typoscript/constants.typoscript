@@ -75,6 +75,12 @@ ameos {
 		#cat=plugin.ameos_tarteaucitron.init; type=string; label=Read more Page Id
 		readmoreLinkPageId =
 
+		#cat=plugin.ameos_tarteaucitron.init; type=string; label=Refresh the page when user accept one or all service
+        reloadOnAccept = false
+
+		#cat=plugin.ameos_tarteaucitron.init; type=string; label=doNotLoadExternalScriptFromServices Tarte Au Citron will not load external scripts thus will allow you to handle them with an external tag manager such as Google Tag Manager
+		doNotLoadExternalScriptFromServices = false
+
 		services {
 			#cat=plugin.ameos_tarteaucitron.services.apis; type=boolean; label=Google jsapi
 			jsapi = 0

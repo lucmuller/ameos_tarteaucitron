@@ -810,6 +810,13 @@ tarteaucitron.services.pianoanalytics = {
                 });
             }
         });
+    },
+    "fallback": function () {
+        if (tarteaucitron.parameters.pianoConsentMode === true) {
+            if (tarteaucitron.parameters.softConsentMode === false) {
+                this.js();
+            }
+        }
     }
 };
 
@@ -5318,6 +5325,7 @@ tarteaucitron.services.youtube = {
                 video_id = tarteaucitron.getElemAttr(x, "videoID"),
                 srcdoc = tarteaucitron.getElemAttr(x, "srcdoc"),
                 loading = tarteaucitron.getElemAttr(x, "loading"),
+                referrerpolicy = tarteaucitron.getElemAttr(x, "referrerpolicy"),
                 video_width = tarteaucitron.getElemAttr(x, "width"),
                 video_height = tarteaucitron.getElemAttr(x, "height"),
                 styleAttr = "",
@@ -5358,7 +5366,13 @@ tarteaucitron.services.youtube = {
                 loading = '';
             }
 
-            video_frame = '<iframe title="' + frame_title + '" style="' + styleAttr + '" src="//www.youtube-nocookie.com/embed/' + video_id + '?' + params + '"' + (allowfullscreen == '0' ? '' : ' webkitallowfullscreen mozallowfullscreen allowfullscreen') + ' ' + srcdoc + ' ' + loading + '></iframe>';
+            if (referrerpolicy !== undefined && referrerpolicy !== null && referrerpolicy !== "") {
+                referrerpolicy = 'referrerpolicy="' + referrerpolicy + '" ';
+            } else {
+                referrerpolicy = '';
+            }
+
+            video_frame = '<iframe title="' + frame_title + '" style="' + styleAttr + '" src="//www.youtube-nocookie.com/embed/' + video_id + '?' + params + '"' + (allowfullscreen == '0' ? '' : ' webkitallowfullscreen mozallowfullscreen allowfullscreen') + ' ' + srcdoc + ' ' + referrerpolicy + ' ' + loading + '></iframe>';
             return video_frame;
         });
     },

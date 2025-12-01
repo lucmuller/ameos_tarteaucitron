@@ -22,7 +22,7 @@ var tarteaucitronScriptsDiscover = document.getElementsByTagName('script'),
 
 
 var tarteaucitron = {
-    "version": "1.26.0",
+    "version": "1.27.1",
     "cdn": cdn,
     "user": {},
     "lang": {},
@@ -245,6 +245,8 @@ var tarteaucitron = {
                 "groupServices": false,
                 "serviceDefaultState": 'wait',
                 "googleConsentMode": true,
+                "pianoConsentMode": true,
+                "pianoConsentModeEssential": false,
                 "bingConsentMode": true,
                 "softConsentMode": false,
                 "dataLayer": false,
@@ -304,6 +306,61 @@ var tarteaucitron = {
                     tacAuthorizedVendors: tarteaucitron.job.filter(job => tarteaucitron.state[job] === true)
                 });
             });
+        }
+
+        // piano consent mode
+        if (tarteaucitron.parameters.pianoConsentMode === true) {
+            window.pdl = window.pdl || {};
+            window.pdl.requireConsent = "v2";
+
+            if(tarteaucitron.parameters.pianoConsentModeEssential === true) {
+                window.pdl.consent = {
+                    products: ["PA"],
+                    defaultPreset: {
+                        PA: "essential",
+                    },
+                };
+            } else {
+                window.pdl.consent = {
+                    products: ["PA"],
+                    defaultPreset: {
+                        PA: "opt-out",
+                    },
+                };
+            }
+
+            document.addEventListener("pianoanalytics_consentModeOk",function () {
+                window.pdl.consent = {
+                    products: ["PA"],
+                    defaultPreset: {
+                        PA: "opt-in",
+                    },
+                };
+
+                if (window.pa && window.pa.consent && typeof window.pa.consent.setMode === "function") {
+                    window.pa.consent.setMode("opt-in");
+                }
+            }, { once: true });
+            document.addEventListener("pianoanalytics_consentModeKo",function () {
+                window.pdl.consent = {
+                    products: ["PA"],
+                    defaultPreset: {
+                        PA: "opt-out",
+                    },
+                };
+
+                if (window.pa && window.pa.consent && typeof window.pa.consent.setMode === "function") {
+                    window.pa.consent.setMode("opt-out");
+                }
+            }, { once: true });
+
+            if (tarteaucitron.parameters.softConsentMode === false) {
+                window.addEventListener('tac.root_available', function () {
+                    if (typeof tarteaucitron_block !== 'undefined') {
+                        tarteaucitron_block.unblock(/piano-analytics\.js/);
+                    }
+                });
+            }
         }
         
         // bing consent mode

@@ -67,6 +67,12 @@ page {
                     if.isTrue = {$ameos.tarteaucitron.iconSrc}
                 }
 
+                35 = TEXT
+                35 {
+                    value = "customCloserId": '{$ameos.tarteaucitron.customCloserId}', /* Optionnal A11y: Personnalised id to open the panel */
+                    if.isTrue = {$ameos.tarteaucitron.customCloserId}
+                }                
+
                 40 = TEXT
                 40.value (
                         "iconPosition": "{$ameos.tarteaucitron.iconPosition}", /* BottomRight, BottomLeft, TopRight and TopLeft */

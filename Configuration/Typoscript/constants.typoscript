@@ -78,6 +78,9 @@ ameos {
 		#cat=plugin.ameos_tarteaucitron.init; type=boolean; label=Show the disabled accept button when mandatory on : true/false
 		mandatoryCta = true
 
+		#cat=plugin.ameos_tarteaucitron.init; type=string; label=Optionnal A11y: Personnalised id to open the panel
+		customCloserId = 
+
 		#cat=plugin.ameos_tarteaucitron.init; type=boolean; label=Enable Google Consent Mode v2 for Google ads and GA4 : true/false
 		googleConsentMode = false
 

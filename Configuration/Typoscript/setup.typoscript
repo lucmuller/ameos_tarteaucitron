@@ -2147,6 +2147,15 @@ page {
                 )
                 if.isTrue = {$ameos.tarteaucitron.services.madmetrics}
             }
+
+            2290 = TEXT
+            2290 {
+                value (
+                    tarteaucitron.user.clickdimensionsAccountKey  = '{$ameos.tarteaucitron.services.clickdimensions.clickdimensionsAccountKey }';
+                    (tarteaucitron.job = tarteaucitron.job || []).push('clickdimensions');
+                )
+                if.isTrue = {$ameos.tarteaucitron.services.clickdimensions}
+            }
         }
     }
 }

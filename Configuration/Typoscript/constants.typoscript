@@ -1182,7 +1182,12 @@ ameos {
 				#cat=plugin.ameos_tarteaucitron.services.ads; type=string; label=Golden Bees Id
 				madmetricsHostname = 
 			}
-			
+			#cat=plugin.ameos_tarteaucitron.services.ads; type=boolean; label=Click Dimensions
+			clickdimensions = 0
+			clickdimensions {
+				#cat=plugin.ameos_tarteaucitron.services.ads; type=string; label=Click Dimensions Account Key
+				clickdimensionsAccountKey  = 
+			}
 		}
 	}
 }
